@@ -1,4 +1,4 @@
-from ibm_watsonx_ai import credentials, APIClient
+from ibm_watsonx_ai import Credentials, APIClient
 from ibm_watsonx_ai.foundation_models import Model, ModelInference
 from ibm_watsonx_ai.foundation_models.schema import TextChatParameters
 from ibm_watsonx_ai.metanames import GenTextParamsMetaNames
@@ -51,10 +51,10 @@ def polish_resume(position_name, resume_content, polish_prompt=""):
     return generated_text
 
 
-resume_polish_interface = gr.Interface(
+resume_polish_application = gr.Interface(
     fn = polish_resume,
-    flagging_mode = false,
-    input = [gr.Textbox(label="Position Name", placeholder="Enter the name of the position ..."),
+    flagging_mode = "never",
+    inputs = [gr.Textbox(label="Position Name", placeholder="Enter the name of the position ..."),
              gr.Textbox(label="Resume Content", placeholder = "Paste your resume content here..."),
              gr.Textbox(label="Polish Instruction (optional)",placeholder="Enter specific instruction for improvement (optional)....")],
     outputs = gr.Textbox(label="Polished Content"),
